@@ -1,0 +1,131 @@
+	<!--
+		Generated template for the HomePage page.
+
+		See http://ionicframework.com/docs/components/#navigation for more info on
+		Ionic pages and navigation.
+	-->
+	<ion-menu [content]="mycontent" side="right" color="laranja">
+		<ion-content>
+			<ion-list>
+				<button ion-item (click)="atualizar()">
+					Atualizar
+				</button>
+				<button ion-item (click)="deslogar()">
+					Deslogar
+				</button>
+			</ion-list>
+		</ion-content>
+	</ion-menu>
+	<ion-nav #mycontent [root]="rootPage"></ion-nav>
+
+	<ion-header no-border>
+		<ion-toolbar color="laranja">
+			<ion-title>
+				Bem-vinda(o)!
+			</ion-title>
+			<ion-buttons start>
+				<button ion-button>
+					<ion-icon name="contact"></ion-icon>
+				</button>
+			</ion-buttons>
+			<ion-buttons end>
+				<button ion-button menuToggle>
+					<ion-icon name="more"></ion-icon>
+				</button>
+			</ion-buttons>
+		</ion-toolbar>
+	</ion-header>
+
+	<ion-content class="card-background-page">
+
+		<ion-card [class]="!bk_status ? 'desabilitado' : 'habilitado'">
+			<img src="assets/imgs/card-bike-sharing.png"/>
+		</ion-card>
+		<ion-row *ngIf="user.aceite != true">
+			<ion-col>
+				<ion-card color="primary">
+					<ion-card-content>
+					É necessário concordar e ter o aceite em Termos de Uso para utilizar o BikeSharing
+					<button icon-start ion-button color="laranja" full round (click)="doAceite()">
+						<ion-icon name="information-circle"></ion-icon> Visualizar Termos de Uso
+					</button>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+
+		<ion-row *ngIf="user.aceite == true && bike == 0">
+			<ion-col>
+				<button icon-start ion-button color="primary" full round (click)="doVerificaBikes()">
+					<ion-icon name="unlock"></ion-icon> Desbloquear Bike
+				</button>
+			</ion-col>
+		</ion-row>
+
+		<ion-row *ngIf="bike != 0">
+			<ion-col>
+				<ion-card color="primary">
+					<ion-card-content>
+					Você está registrado com a Bike {{bike}}
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+
+		<ion-row *ngIf="bike != 0">
+			<ion-col>
+				<button icon-start ion-button color="primary" full round (click)="doAcionaTrava(bike)">
+					<ion-icon name="lock"></ion-icon> Acionar trava
+				</button>
+			</ion-col>
+		</ion-row>
+
+		<ion-row *ngIf="bike != 0">
+			<ion-col>
+				<button icon-start ion-button color="laranja" full round (click)="showDevolucao()">
+					<ion-icon name="bicycle"></ion-icon> Confirmar devolução
+				</button>
+			</ion-col>
+		</ion-row>
+
+		<ion-list no-lines *ngIf="historico.length > 0">
+			<ion-list-header no-lines>
+				Histórico de Utilização
+			</ion-list-header>
+
+			<ion-item-sliding>
+				<ion-item>
+					<ion-avatar item-start>
+						<img src="assets/imgs/leandro.png">
+					</ion-avatar>
+					<h2>05 / Jan</h2>
+					<p>Total de horas utilizado • 2h</p>
+					<button ion-button clear item-end>Detalhes</button>
+				</ion-item>
+				<ion-item>
+					<ion-avatar item-start>
+						<img src="assets/imgs/leandro.png"> 
+					</ion-avatar>
+					<h2>08 / Jan</h2>
+					<p>Total de horas utilizado • 14h</p>
+					<button ion-button clear item-end>Detalhes</button>
+
+				</ion-item>
+			</ion-item-sliding>
+
+
+		</ion-list>
+
+		<ion-fab bottom right  >
+			<button ion-fab mini color="laranja"><ion-icon name="help-circle"></ion-icon></button>
+			<ion-fab-list>
+				<button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+				<button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+				<button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+				<button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+			</ion-fab-list>
+		</ion-fab>
+
+	</ion-content>
+
+
