@@ -10,7 +10,7 @@
 - Leandro Candido
 - Felipe Martins Malinovski
 - Marcus Lamim
-- Andre Fountoura
+- Andre Foutoura
 
 ### Infos técnicas:
 
